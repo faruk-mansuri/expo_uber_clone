@@ -5,15 +5,17 @@ import { StatusBar } from 'expo-status-bar'
 import { router } from 'expo-router'
 import Swiper from 'react-native-swiper'
 import { onboarding } from '@/constant'
-// import CustomButton from '@/components/CustomButton'
+import CustomButton from '@/components/CustomButton'
 
 const WelcomeScreen = () => {
   const swiperRef = useRef<Swiper>(null)
   const [activeIndex, setActiveIndex] = useState(0)
+  const isLastSlide = activeIndex === onboarding.length - 1
 
   return (
     <SafeAreaView className='flex h-full items-center justify-center bg-white'>
       <StatusBar style='dark' />
+
       <TouchableOpacity
         className='w-full flex justify-end items-end p-5'
         onPress={() => router.replace('/(auth)/sign-up')}
@@ -50,7 +52,15 @@ const WelcomeScreen = () => {
         })}
       </Swiper>
 
-      {/* <CustomButton title={'Next'} /> */}
+      <CustomButton
+        title={isLastSlide ? 'Get Stated' : 'Next'}
+        onPress={() =>
+          isLastSlide
+            ? router.replace('/(auth)/sign-up')
+            : swiperRef.current?.scrollBy(1)
+        }
+        className='w-11/12 mb-4'
+      />
     </SafeAreaView>
   )
 }
