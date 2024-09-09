@@ -1,89 +1,129 @@
+import RideCard from '@/components/RideCard'
 import { SignedIn, SignedOut, useUser } from '@clerk/clerk-expo'
 import { Link } from 'expo-router'
 import { StatusBar } from 'expo-status-bar'
-import { ScrollView, Text, View } from 'react-native'
+import { FlatList, ScrollView, Text, View } from 'react-native'
 import { SafeAreaView } from 'react-native-safe-area-context'
 
 export default function Page() {
   const { user } = useUser()
+  const recentRides = [
+    {
+      ride_id: '1',
+      origin_address: 'Kathmandu, Nepal',
+      destination_address: 'Pokhara, Nepal',
+      origin_latitude: 27.717245,
+      origin_longitude: 85.323961,
+      destination_latitude: 28.209583,
+      destination_longitude: 83.985567,
+      ride_time: 391,
+      fare_price: 19500.0,
+      payment_status: 'paid',
+      driver_id: 2,
+      user_id: '1',
+      created_at: '2024-08-12 05:19:20.620007',
+      driver: {
+        driver_id: '2',
+        first_name: 'David',
+        last_name: 'Brown',
+        profile_image_url:
+          'https://ucarecdn.com/6ea6d83d-ef1a-483f-9106-837a3a5b3f67/-/preview/1000x666/',
+        car_image_url:
+          'https://ucarecdn.com/a3872f80-c094-409c-82f8-c9ff38429327/-/preview/930x932/',
+        car_seats: 5,
+        rating: '4.60',
+      },
+    },
+    {
+      ride_id: '2',
+      origin_address: 'Jalkot, MH',
+      destination_address: 'Pune, Maharashtra, India',
+      origin_latitude: 18.609116,
+      origin_longitude: 77.165873,
+      destination_latitude: 18.52043,
+      destination_longitude: 73.856744,
+      ride_time: 491,
+      fare_price: 24500.0,
+      payment_status: 'paid',
+      driver_id: 1,
+      user_id: '1',
+      created_at: '2024-08-12 06:12:17.683046',
+      driver: {
+        driver_id: '1',
+        first_name: 'James',
+        last_name: 'Wilson',
+        profile_image_url:
+          'https://ucarecdn.com/dae59f69-2c1f-48c3-a883-017bcf0f9950/-/preview/1000x666/',
+        car_image_url:
+          'https://ucarecdn.com/a2dc52b2-8bf7-4e49-9a36-3ffb5229ed02/-/preview/465x466/',
+        car_seats: 4,
+        rating: '4.80',
+      },
+    },
+    {
+      ride_id: '3',
+      origin_address: 'Zagreb, Croatia',
+      destination_address: 'Rijeka, Croatia',
+      origin_latitude: 45.815011,
+      origin_longitude: 15.981919,
+      destination_latitude: 45.327063,
+      destination_longitude: 14.442176,
+      ride_time: 124,
+      fare_price: 6200.0,
+      payment_status: 'paid',
+      driver_id: 1,
+      user_id: '1',
+      created_at: '2024-08-12 08:49:01.809053',
+      driver: {
+        driver_id: '1',
+        first_name: 'James',
+        last_name: 'Wilson',
+        profile_image_url:
+          'https://ucarecdn.com/dae59f69-2c1f-48c3-a883-017bcf0f9950/-/preview/1000x666/',
+        car_image_url:
+          'https://ucarecdn.com/a2dc52b2-8bf7-4e49-9a36-3ffb5229ed02/-/preview/465x466/',
+        car_seats: 4,
+        rating: '4.80',
+      },
+    },
+    {
+      ride_id: '4',
+      origin_address: 'Okayama, Japan',
+      destination_address: 'Osaka, Japan',
+      origin_latitude: 34.655531,
+      origin_longitude: 133.919795,
+      destination_latitude: 34.693725,
+      destination_longitude: 135.502254,
+      ride_time: 159,
+      fare_price: 7900.0,
+      payment_status: 'paid',
+      driver_id: 3,
+      user_id: '1',
+      created_at: '2024-08-12 18:43:54.297838',
+      driver: {
+        driver_id: '3',
+        first_name: 'Michael',
+        last_name: 'Johnson',
+        profile_image_url:
+          'https://ucarecdn.com/0330d85c-232e-4c30-bd04-e5e4d0e3d688/-/preview/826x822/',
+        car_image_url:
+          'https://ucarecdn.com/289764fb-55b6-4427-b1d1-f655987b4a14/-/preview/930x932/',
+        car_seats: 4,
+        rating: '4.70',
+      },
+    },
+  ]
 
   return (
-    <SafeAreaView>
+    <SafeAreaView className='bg-general-500'>
       <StatusBar style='dark' />
-      <SignedIn>
-        <Text>Hello {user?.emailAddresses[0].emailAddress}</Text>
-      </SignedIn>
-      <SignedOut>
-        <Link href='/sign-in'>
-          <Text>Sign In</Text>
-        </Link>
-        <Link href='/sign-up'>
-          <Text>Sign Up</Text>
-        </Link>
-      </SignedOut>
 
-      <ScrollView>
-        <Text>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Distinctio
-          fugiat sapiente exercitationem esse? Laboriosam perspiciatis provident
-          id quasi accusamus et animi sint blanditiis odit amet impedit omnis
-          assumenda, accusantium dolore doloremque harum sequi corrupti
-          incidunt? Ducimus odit aspernatur aliquid neque, perferendis labore
-          enim voluptas, vel explicabo vero omnis veniam voluptate officia nulla
-          aperiam molestiae vitae debitis? Natus similique ipsum perspiciatis,
-          et pariatur sed sint excepturi unde eaque, cum omnis facere quia ad
-          cupiditate accusamus praesentium placeat, dolore quasi neque quod.
-          Aspernatur eligendi dignissimos voluptates, nisi natus ipsa
-          voluptatibus perferendis eum eos dolorem quasi accusamus impedit neque
-          dolores iste. Odio omnis quae sapiente dolorem suscipit eius autem,
-          veritatis, id ipsa necessitatibus voluptatum? Magni expedita
-          repudiandae repellendus amet unde maiores? Consectetur soluta, dolor
-          porro consequatur incidunt iure minus in quos possimus eum cumque,
-          repellat sint suscipit assumenda similique amet id magnam dignissimos
-          delectus culpa laudantium quia nobis, reiciendis tempora! Doloribus,
-          eaque possimus. Rerum nesciunt in quod aliquid aut itaque earum,
-          maiores reprehenderit asperiores repellat corporis, voluptates odio
-          sequi impedit atque voluptatibus optio velit molestias. Perspiciatis
-          harum unde iusto molestias aperiam quae architecto repellendus. Ullam
-          iusto eum nulla vitae consectetur corrupti quidem nihil ipsam dolore
-          adipisci hic modi optio eaque quaerat facere non provident, dolores id
-          unde explicabo laudantium laborum earum. Consequatur magnam, a
-          voluptates molestias consectetur odio ex, quisquam porro temporibus
-          est quia vel adipisci aliquam, facilis blanditiis id error enim
-          ratione nesciunt impedit harum accusantium iste necessitatibus neque?
-          Culpa vero, repudiandae necessitatibus facere eaque exercitationem est
-          dignissimos iste assumenda, nesciunt beatae repellendus aspernatur
-          praesentium illum nam! Omnis quae earum sit minima, vero vel? Aut
-          dicta dolorum esse eveniet, ducimus, fuga a minus cumque, soluta
-          reprehenderit vero excepturi? Eveniet quaerat architecto
-          exercitationem illum delectus officiis eum a accusamus facere
-          accusantium, impedit ea mollitia labore veniam unde voluptatibus
-          aspernatur vel ullam fuga? Cupiditate adipisci animi dolorem tempora
-          ullam aspernatur sint fugit, similique voluptas quaerat doloribus
-          distinctio. Perspiciatis, temporibus nihil! Repudiandae, ullam libero?
-          Laboriosam hic, asperiores in numquam possimus fuga ratione
-          dignissimos omnis similique accusamus porro perferendis nobis delectus
-          nihil reiciendis animi corporis repudiandae vero vel quis nemo sunt
-          perspiciatis blanditiis. Ipsa aliquid eius officia ex voluptate illum
-          eos, suscipit optio cupiditate unde, a dolorum. Aspernatur expedita
-          vitae non harum, eaque consequuntur nostrum corrupti vel, fugiat quae
-          asperiores debitis nesciunt. Deleniti, a id minima nesciunt dicta
-          neque facilis magnam delectus voluptatibus veritatis eveniet deserunt,
-          iste reprehenderit assumenda praesentium autem libero corrupti
-          obcaecati quo, placeat voluptas? Excepturi ad sapiente quibusdam
-          perferendis enim suscipit nostrum dicta recusandae distinctio? Velit
-          sint commodi similique reprehenderit repellendus vero error rerum
-          fugit obcaecati! Doloremque quae sequi delectus, enim optio sunt, ut
-          beatae maiores voluptate dicta quos in at labore explicabo quasi iure
-          soluta tempore. Corporis pariatur, ullam provident deserunt a fugiat
-          labore! Perspiciatis suscipit labore aliquam, quam numquam explicabo
-          dicta sed qui magni ut, reprehenderit voluptate! Quidem dignissimos
-          nesciunt beatae ex dolorem atque natus, dolor laborum labore vero,
-          error adipisci fugit nam nemo harum minima laudantium. Nostrum minus
-          expedita rerum, reiciendis quam quidem recusandae soluta, laborum
-          assumenda facilis itaque impedit!
-        </Text>
-      </ScrollView>
+      <FlatList
+        data={recentRides?.slice(0, 5)}
+        renderItem={({ item }) => {
+          return <RideCard ride={item} />
+        }}
+      />
     </SafeAreaView>
   )
 }
