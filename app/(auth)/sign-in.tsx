@@ -12,7 +12,7 @@ import { useSignIn } from '@clerk/clerk-expo'
 const SignInScreen = () => {
   const { signIn, setActive, isLoaded } = useSignIn()
   const [form, setForm] = useState({
-    email: 'dospalolme@gufum.com',
+    email: 'rurzuporta@gufum.com',
     password: 'worldW@r3',
   })
 

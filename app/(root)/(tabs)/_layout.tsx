@@ -32,6 +32,7 @@ const TabsLayout = () => {
   return (
     <Tabs
       screenOptions={{
+        tabBarHideOnKeyboard: true,
         tabBarActiveTintColor: 'white',
         tabBarInactiveTintColor: 'white',
         tabBarShowLabel: false,
@@ -47,7 +48,7 @@ const TabsLayout = () => {
           // alignItems: 'center',
           // flexDirection: 'row',
           position: 'absolute',
-          marginBottom: 10,
+          // marginBottom: 10,
         },
       }}
     >

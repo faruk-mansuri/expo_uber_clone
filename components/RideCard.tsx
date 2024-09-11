@@ -2,7 +2,7 @@ import { View, Text, Image } from 'react-native'
 import React from 'react'
 import { Ride } from '@/types/type'
 import { icons } from '@/constant'
-import { formatDate } from '@/lib/utils'
+import { formatDate, formatTime } from '@/lib/utils'
 
 const RideCard = ({ ride }: { ride: Ride }) => {
   const {
@@ -17,7 +17,7 @@ const RideCard = ({ ride }: { ride: Ride }) => {
   } = ride
   return (
     <View className='flex flex-row items-center justify-center bg-white rounded-lg shadow-sm shadow-neutral-300 mb-3'>
-      <View className='flex flex-row items-center justify-between p-3 '>
+      <View className='flex items-center justify-between p-3 '>
         <View className='flex flex-row items-center justify-between'>
           <Image
             source={{
@@ -50,7 +50,42 @@ const RideCard = ({ ride }: { ride: Ride }) => {
             </Text>
 
             <Text className='text-md font-JakartaMedium text-gray-500'>
-              {formatDate(created_at)}, {formatDate(ride_time.toString())}
+              {formatDate(created_at)}, {formatTime(ride_time)}
+            </Text>
+          </View>
+
+          {/* Driver Info */}
+          <View className='flex flex-row items-center w-full justify-between mb-5'>
+            <Text className='text-md font-JakartaMedium text-gray-500'>
+              Driver
+            </Text>
+
+            <Text className='text-md font-JakartaMedium text-gray-500'>
+              {driver.first_name}
+            </Text>
+          </View>
+
+          {/* Car seats */}
+          <View className='flex flex-row items-center w-full justify-between mb-5'>
+            <Text className='text-md font-JakartaMedium text-gray-500'>
+              Car Seats
+            </Text>
+
+            <Text className='text-md font-JakartaMedium text-gray-500'>
+              {driver.car_seats}
+            </Text>
+          </View>
+
+          {/* Payment Status */}
+          <View className='flex flex-row items-center w-full justify-between mb-5'>
+            <Text className='text-md font-JakartaMedium text-gray-500'>
+              Payment Status
+            </Text>
+
+            <Text
+              className={`text-md font-JakartaMedium text-gray-500 ${payment_status == 'paid' ? 'text-green-500' : 'text-red-500'}`}
+            >
+              {payment_status}
             </Text>
           </View>
         </View>
